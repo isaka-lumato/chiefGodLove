@@ -20,7 +20,7 @@ export default function YouTubeSection() {
   return (
     <section className="youtube-section" id="YouTube">
       <div className="youtube-header" data-aos="fade-up">
-        <h2>🎥 Watch Chief Godlove on YouTube</h2>
+        <h2 style={{ color: '#fff' }}>🎥 Watch Chief Godlove on YouTube</h2>
         <p>
           Explore inspiring messages, powerful sermons, and real-life impact through these featured videos.
         </p>
