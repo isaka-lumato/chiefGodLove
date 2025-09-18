@@ -26,8 +26,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run generate-sitemap && react-scripts build",
     "compress-images": "node compress-images.js",
+    "generate-sitemap": "node generate-sitemap.js",
     "deploy": "npm run build && node upload.js",
     "deploy-secure": "npm run build && node upload-secure.js"
   },
