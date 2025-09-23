@@ -4,22 +4,18 @@ const values = [
   {
     title: "Compassion",
     description: "Serving with love and dignity.",
-    icon: "❤️",
   },
   {
     title: "Leadership",
     description: "Inspiring growth and transformation.",
-    icon: "🌟",
   },
   {
     title: "Integrity",
     description: "Leading with honesty and moral strength.",
-    icon: "🛡️",
   },
   {
     title: "Empowerment",
     description: "Helping others overcome obstacles and succeed.",
-    icon: "🚀",
   },
 ];
 
@@ -34,7 +30,6 @@ function CoreValuesSection() {
       <div className="core-values-container">
         {values.map((value, index) => (
           <div className="value-card" key={index}>
-            <div className="icon">{value.icon}</div>
             <h3>{value.title}</h3>
             <p>{value.description}</p>
           </div>

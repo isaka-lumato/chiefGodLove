@@ -44,7 +44,7 @@ function AchievementsSection() {
           data-aos-delay="150"
         >
           <h2 data-aos="fade-down" data-aos-delay="250">
-            🏆 Recognition & Achievements
+            Recognition & Achievements
           </h2>
           
           <ul className="achievement-list">

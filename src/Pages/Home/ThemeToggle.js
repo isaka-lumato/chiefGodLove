@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 function ThemeToggle() {
   const [theme, setTheme] = useState("light");
@@ -18,8 +19,8 @@ function ThemeToggle() {
   };
 
   return (
-    <span onClick={toggleTheme} style={{ cursor: "pointer", fontSize: "1.5rem" }}>
-      {theme === "light" ? "🌙" : "☀️"}
+    <span onClick={toggleTheme} style={{ cursor: "pointer", fontSize: "1.5rem", display: "inline-flex", alignItems: "center" }}>
+      {theme === "light" ? <FaMoon aria-label="Switch to dark mode" /> : <FaSun aria-label="Switch to light mode" />}
     </span>
   );
 }

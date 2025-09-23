@@ -56,7 +56,7 @@ function MissionSection() {
               data-aos-offset="0"
               data-aos-anchor-placement="center-bottom"
             >
-              <span className="mission-icon">🎯</span> <strong>Eradicate poverty</strong> among vulnerable communities
+              <strong>Eradicate poverty</strong> among vulnerable communities
             </li>
             <li 
               data-aos="fade-right" 
@@ -64,7 +64,7 @@ function MissionSection() {
               data-aos-offset="0"
               data-aos-anchor-placement="center-bottom"
             >
-              <span className="mission-icon">💡</span> <strong>Motivate youth</strong> to become independent and socially responsible
+              <strong>Motivate youth</strong> to become independent and socially responsible
             </li>
             <li 
               data-aos="fade-right" 
@@ -72,7 +72,7 @@ function MissionSection() {
               data-aos-offset="0"
               data-aos-anchor-placement="center-bottom"
             >
-              <span className="mission-icon">🙏</span> <strong>Offer spiritual healing</strong> and restore hope
+              <strong>Offer spiritual healing</strong> and restore hope
             </li>
             <li 
               data-aos="fade-right" 
@@ -80,7 +80,7 @@ function MissionSection() {
               data-aos-offset="0"
               data-aos-anchor-placement="center-bottom"
             >
-              <span className="mission-icon">⚖️</span> <strong>Champion human rights</strong> and inclusive governance
+              <strong>Champion human rights</strong> and inclusive governance
             </li>
           </ul>
         </div>

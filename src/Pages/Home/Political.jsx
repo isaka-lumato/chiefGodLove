@@ -52,21 +52,21 @@ function PoliticalSection() {
               data-aos-delay="400"
               data-aos-offset="20"
             >
-              ⚖️ <strong>Fight for human rights and justice for all</strong>
+              <strong>Fight for human rights and justice for all</strong>
             </li>
             <li 
               data-aos="fade-right" 
               data-aos-delay="450"
               data-aos-offset="20"
             >
-              🤝 <strong>Uplift the poor and voiceless</strong>
+              <strong>Uplift the poor and voiceless</strong>
             </li>
             <li 
               data-aos="fade-right" 
               data-aos-delay="500"
               data-aos-offset="20"
             >
-              🌍 <strong>Drive inclusive policies that protect dignity for all people</strong>
+              <strong>Drive inclusive policies that protect dignity for all people</strong>
             </li>
           </ul>
 

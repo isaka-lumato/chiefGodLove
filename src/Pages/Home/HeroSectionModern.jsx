@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowRight, FaPlay, FaPhone } from "react-icons/fa";
+import { FaArrowRight, FaPlay, FaPhone, FaMicrophone, FaMagic, FaStar } from "react-icons/fa";
 import { Link } from "react-scroll";
 
 const titles = [
@@ -224,7 +224,7 @@ export default function HeroSectionModern() {
                 ease: "easeInOut"
               }}
             >
-              <span className="card-icon">🎤</span>
+              <span className="card-icon"><FaMicrophone /></span>
               <span>Speaker</span>
             </motion.div>
 
@@ -241,7 +241,7 @@ export default function HeroSectionModern() {
                 delay: 1
               }}
             >
-              <span className="card-icon">✨</span>
+              <span className="card-icon"><FaMagic /></span>
               <span>Healer</span>
             </motion.div>
 
@@ -258,7 +258,7 @@ export default function HeroSectionModern() {
                 delay: 2
               }}
             >
-              <span className="card-icon">🌟</span>
+              <span className="card-icon"><FaStar /></span>
               <span>Leader</span>
             </motion.div>
           </motion.div>
