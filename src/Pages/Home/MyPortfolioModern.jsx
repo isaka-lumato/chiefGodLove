@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaExpand, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-scroll";
 import data from "../../data/index.json";
 
 export default function MyPortfolioModern() {
@@ -129,12 +130,14 @@ export default function MyPortfolioModern() {
                 </div>
 
                 {/* Action Button */}
-                <motion.button 
+                <Link
+                  to="footer"
+                  smooth={true}
+                  duration={500}
                   className="card-action-btn"
-                  whileHover={{ x: 5 }}
                 >
-                  Learn More <FaArrowRight />
-                </motion.button>
+                  Contact Us <FaArrowRight />
+                </Link>
               </div>
 
               {/* Animated Border */}

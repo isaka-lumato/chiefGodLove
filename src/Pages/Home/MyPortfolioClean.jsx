@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaBriefcase, FaHeart, FaVideo } from "react-icons/fa";
+import { Link } from "react-scroll";
 import data from "../../data/index.json";
 
 export default function MyPortfolioClean() {
@@ -100,11 +101,16 @@ export default function MyPortfolioClean() {
                 )}
               </div>
 
-              {/* Action Button */}
-              <button className="card-button">
-                Learn More
+              {/* Action Button -> Contact Us link to footer */}
+              <Link
+                to="footer"
+                smooth={true}
+                duration={500}
+                className="card-button"
+              >
+                Contact Us
                 <FaArrowRight className="button-icon" />
-              </button>
+              </Link>
             </div>
           </motion.div>
         ))}

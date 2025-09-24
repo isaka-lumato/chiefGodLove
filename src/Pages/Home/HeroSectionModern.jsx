@@ -84,25 +84,24 @@ export default function HeroSectionModern() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Animated Badge */}
-          <motion.div
+          {/* Welcome Heading */}
+          <motion.h1 
+            className="hero-welcome"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="hero-badge"
           >
-            <span className="badge-dot"></span>
-            <span>Transforming Lives Since 2010</span>
-          </motion.div>
+            Welcome!
+          </motion.h1>
 
-          {/* Main Title */}
+          {/* Name directly below */}
           <motion.p 
-            className="hero-subtitle"
+            className="hero-name"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.35 }}
           >
-            Welcome! I'm Godlove Mwakibete
+            I'm godlove mwakibete
           </motion.p>
 
           <motion.h1 
@@ -337,33 +336,22 @@ export default function HeroSectionModern() {
           opacity: 0.2;
         }
 
-        .hero-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1rem;
-          background: rgba(220, 38, 38, 0.1);
-          border-radius: 50px;
-          margin-bottom: 1.5rem;
+        .hero-welcome {
+          font-size: clamp(44px, 5.5vw, 60px);
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 8px;
+          letter-spacing: -2px;
+          line-height: 1.05;
         }
 
-        .badge-dot {
-          width: 8px;
-          height: 8px;
-          background: #dc2626;
-          border-radius: 50%;
-          animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 1;
-          }
-          50% {
-            transform: scale(1.5);
-            opacity: 0.5;
-          }
+        .hero-name {
+          font-size: 20px;
+          color: #334155;
+          margin-bottom: 16px;
+          font-weight: 600;
+          letter-spacing: -0.3px;
+          padding-left: 2px; /* nudge right for better visual alignment */
         }
 
         .hero-stats {
@@ -593,6 +581,14 @@ export default function HeroSectionModern() {
 
           .bg-gradient-circle {
             display: none;
+          }
+
+          .hero-welcome {
+            font-size: 36px;
+          }
+
+          .hero-name {
+            font-size: 16px;
           }
         }
 

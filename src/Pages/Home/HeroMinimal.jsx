@@ -30,25 +30,24 @@ export default function HeroMinimal() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* Subtle Badge */}
-          <motion.div
-            className="hero-badge"
+          {/* Welcome Heading */}
+          <motion.h1 
+            className="hero-welcome"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <span className="badge-dot"></span>
-            <span>Transforming Lives Since 2010</span>
-          </motion.div>
+            Welcome!
+          </motion.h1>
 
-          {/* Welcome Text */}
+          {/* Name directly below */}
           <motion.p 
-            className="hero-welcome"
+            className="hero-name"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.45, duration: 0.6 }}
           >
-            Welcome! I'm Godlove Mwakibete
+            I'm godlove mwakibete
           </motion.p>
 
           {/* Dynamic Title */}
@@ -200,46 +199,22 @@ export default function HeroMinimal() {
           max-width: 540px;
         }
 
-        .hero-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 6px 16px;
-          background: rgba(220, 38, 38, 0.08);
-          border-radius: 30px;
-          margin-bottom: 24px;
-        }
-
-        .badge-dot {
-          width: 6px;
-          height: 6px;
-          background: #dc2626;
-          border-radius: 50%;
-          animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-
-        .hero-badge span:last-child {
-          font-size: 13px;
-          font-weight: 500;
-          color: #dc2626;
-          letter-spacing: -0.2px;
-        }
-
         .hero-welcome {
-          font-size: 18px;
-          color: #64748b;
+          font-size: clamp(44px, 5.5vw, 60px);
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 8px;
+          letter-spacing: -2px;
+          line-height: 1.05;
+        }
+
+        .hero-name {
+          font-size: 20px;
+          color: #334155;
           margin-bottom: 16px;
-          font-weight: 400;
+          font-weight: 600;
           letter-spacing: -0.3px;
+          padding-left: 2px; /* nudge right for better visual alignment */
         }
 
         .hero-title {
@@ -433,8 +408,12 @@ export default function HeroMinimal() {
             max-width: 280px;
           }
 
-          .hero-badge {
-            margin: 0 auto 20px;
+          .hero-welcome {
+            font-size: 30px;
+          }
+
+          .hero-name {
+            font-size: 16px;
           }
 
           .hero-title {
@@ -501,6 +480,10 @@ export default function HeroMinimal() {
           }
 
           .hero-welcome {
+            font-size: 36px;
+          }
+
+          .hero-name {
             font-size: 16px;
           }
 

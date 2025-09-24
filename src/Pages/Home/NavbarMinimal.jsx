@@ -304,7 +304,6 @@ function NavbarMinimal() {
           display: flex;
           align-items: center;
           gap: 8px;
-          padding: 12px 28px;
           background: #dc2626;
           color: white;
           text-decoration: none;
@@ -315,6 +314,7 @@ function NavbarMinimal() {
           cursor: pointer;
           position: relative;
           overflow: hidden;
+          margin-top: 0!important;
         }
 
         .cta-button::before {

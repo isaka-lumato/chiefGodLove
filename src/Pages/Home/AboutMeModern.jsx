@@ -114,18 +114,6 @@ export default function AboutMeModern() {
                 ))}
               </div>
 
-              {/* CTA Button */}
-              <motion.div 
-                className="about-cta"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-              >
-                <button className="btn-modern btn-primary-modern">
-                  Download My Bio
-                </button>
-              </motion.div>
             </div>
           </motion.div>
         </div>
