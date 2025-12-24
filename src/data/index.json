@@ -77,7 +77,7 @@
       "alt": "Event 3"
     },
     {
-      "src": "./img/gallery4.jpeg",
+      "src": "./img/gallery4.JPG",
       "alt": "Event 4"
     },
     {
@@ -93,19 +93,19 @@
       "alt": "Event 7"
     },
     {
-      "src": "./img/gallery8.jpeg",
+      "src": "./img/gallery8.JPG",
       "alt": "Event 8"
     },
     {
-      "src": "./img/gallery9.jpeg",
+      "src": "./img/gallery9.JPG",
       "alt": "Event 9"
     },
     {
-      "src": "./img/gallery10.jpeg",
+      "src": "./img/gallery10.JPG",
       "alt": "Event 10"
     },
     {
-      "src": "./img/gallery11.jpeg",
+      "src": "./img/gallery11.JPG",
       "alt": "Event 11"
     },
     {
@@ -125,24 +125,48 @@
       "alt": "Event 15"
     },
     {
-      "src": "./img/gallery20.jpg",
+      "src": "./img/gallery20.JPG",
       "alt": "Event 20"
     },
     {
-      "src": "./img/gallery17.jpg",
+      "src": "./img/gallery17.JPG",
       "alt": "Event 17"
     },
     {
-      "src": "./img/gallery18.jpg",
+      "src": "./img/gallery18.JPG",
       "alt": "Event 18"
     },
     {
-      "src": "./img/gallery19.jpg",
+      "src": "./img/gallery19.JPG",
       "alt": "Event 19"
     },
     {
-      "src": "./img/gallery21.jpg",
+      "src": "./img/gallery21.JPG",
       "alt": "Event 21"
+    },
+    {
+      "src": "./img/CGL/cattles (1).JPG",
+      "alt": "Ankole Cattle"
+    },
+    {
+      "src": "./img/CGL/cattles (2).JPG",
+      "alt": "Ankole Cattle"
+    },
+    {
+      "src": "./img/CGL/cattles (3).JPG",
+      "alt": "Ankole Cattle"
+    },
+    {
+      "src": "./img/CGL/cattles (4).JPG",
+      "alt": "Ankole Cattle"
+    },
+    {
+      "src": "./img/CGL/pipiJojo (1).jpg",
+      "alt": "Pipijojo"
+    },
+    {
+      "src": "./img/CGL/pipiJojo (2).jpg",
+      "alt": "Pipijojo"
     }
   ]
 }
