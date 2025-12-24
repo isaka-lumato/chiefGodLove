@@ -19,17 +19,17 @@ import YouTubeSection from "../youtube";
 export default function Home() {
   // You can toggle between modern and original components
   const useModernUI = true; // Set to false to use original components
-  
+
   return (
     <>
       {useModernUI ? <HeroMinimal /> : <HeroSection />}
       {useModernUI ? <AboutMeModern /> : <AboutMe />}
-      {useModernUI ? <MyPortfolioClean /> : <MyPortfolio />}
+      {useModernUI ? <MyPortfolioModern /> : <MyPortfolio />}
       <ContactMe />
-      <PoliticalSection/>
-      <MissionSection/>
-      <CoreValuesSection/>
-      <YouTubeSection/>
+      <PoliticalSection />
+      <MissionSection />
+      <CoreValuesSection />
+      <YouTubeSection />
       <Testimonial />
       <Footer />
     </>

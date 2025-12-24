@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
 
 const titles = [
+  "Visionary Leader",
   "Motivational Speaker",
-  "Spiritual Healer",
-  "Respected Prophet",
-  "Visionary Leader"
+  "Spiritual Mentor",
+  "Global influencer"
 ];
 
 export default function HeroMinimal() {
@@ -15,480 +15,326 @@ export default function HeroMinimal() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
-    }, 3500);
-
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section id="heroSection" className="hero-minimal">
-      <div className="hero-container">
+    <section id="heroSection" className="hero-luxury">
+      <div className="hero-bg-overlay"></div>
+
+      <div className="container-luxury hero-container">
         {/* Left Content */}
-        <motion.div 
+        <motion.div
           className="hero-content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Welcome Heading */}
-          <motion.h1 
-            className="hero-welcome"
+          <motion.div
+            className="hero-welcome text-gold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.2 }}
           >
-            Welcome!
-          </motion.h1>
+            WELCOME TO THE WORLD OF
+          </motion.div>
 
-          {/* Name directly below */}
-          <motion.p 
-            className="hero-name"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.6 }}
-          >
-            I'm godlove mwakibete
-          </motion.p>
-
-          {/* Dynamic Title */}
-          <motion.h1 
+          <motion.h1
             className="hero-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            transition={{ delay: 0.3 }}
           >
+            CHIEF <br /> <span className="text-gradient-gold">GODLOVE</span>
+          </motion.h1>
+
+          <div className="hero-subtitle-wrapper">
             <AnimatePresence mode="wait">
-              <motion.span
+              <motion.h2
                 key={currentTitleIndex}
-                initial={{ opacity: 0, y: 10 }}
+                className="hero-dynamic-title"
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
               >
                 {titles[currentTitleIndex]}
-              </motion.span>
+              </motion.h2>
             </AnimatePresence>
-          </motion.h1>
+          </div>
 
-          {/* Description */}
-          <motion.p 
+          <motion.p
             className="hero-description"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
           >
-            Empowering lives through faith, purpose, and leadership. 
-            Standing for hope, transformation, and the dignity of all people. 
-            Join me in creating positive change across Tanzania and beyond.
+            Empowering lives through faith, leadership, and unwavering purpose.
+            Join me on a journey of transformation and discover the power within.
           </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div 
+          <motion.div
             className="hero-actions"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.6 }}
+            transition={{ delay: 0.7 }}
           >
             <Link
               to="footer"
               smooth={true}
-              duration={500}
-              className="btn-primary"
+              duration={1000}
+              className="btn-luxury btn-luxury-filled"
             >
-              <span>Get In Touch</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              Get In Touch
             </Link>
-            
+
             <Link
               to="AboutMe"
               smooth={true}
-              duration={500}
-              className="btn-secondary"
+              duration={1000}
+              className="btn-luxury"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M14.752 11.168L11.518 13.882C10.918 14.382 10 13.967 10 13.197V6.803C10 6.033 10.918 5.618 11.518 6.118L14.752 8.832C15.368 9.347 15.368 10.653 14.752 11.168Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>Watch My Story</span>
+              Discover More
             </Link>
           </motion.div>
 
-          {/* Simple Stats */}
-          <motion.div 
+          <motion.div
             className="hero-stats"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.6 }}
+            transition={{ delay: 1 }}
           >
-            <div className="stat">
-              <h3>10K+</h3>
-              <p>Lives Transformed</p>
+            <div className="stat-item">
+              <span className="stat-number">15+</span>
+              <span className="stat-label">Years Experience</span>
             </div>
-            <div className="stat">
-              <h3>50+</h3>
-              <p>Speaking Events</p>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">10K+</span>
+              <span className="stat-label">Lives Touched</span>
             </div>
-            <div className="stat">
-              <h3>15+</h3>
-              <p>Years Experience</p>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">50+</span>
+              <span className="stat-label">Global Events</span>
             </div>
           </motion.div>
         </motion.div>
 
         {/* Right Image */}
-        <motion.div 
-          className="hero-image"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
+        <motion.div
+          className="hero-image-container"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="image-wrapper">
-            <div className="image-frame">
-              <img 
-                src="./img/hero43.png" 
-                alt="Chief Godlove" 
-              />
-            </div>
-            {/* Subtle decoration */}
-            <div className="image-decoration"></div>
+          <div className="hero-image-frame">
+            <img src="./img/hero43.png" alt="Chief Godlove" className="hero-img" />
+            <div className="frame-border-1"></div>
+            <div className="frame-border-2"></div>
           </div>
         </motion.div>
       </div>
 
-      {/* Minimal scroll indicator */}
-      <motion.div 
-        className="scroll-hint"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M19 14L12 21L5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-      </motion.div>
-
       <style jsx>{`
-        .hero-minimal {
+        .hero-luxury {
           min-height: 100vh;
+          position: relative;
           display: flex;
           align-items: center;
-          padding: 100px 0 80px;
-          background: linear-gradient(to bottom, #ffffff, #fafafa);
-          position: relative;
+          padding: 120px 0 80px;
+          background-color: var(--bg-primary);
           overflow: hidden;
+        }
+
+        .hero-bg-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+            radial-gradient(circle at 80% 80%, rgba(5, 5, 5, 0.8) 0%, transparent 40%);
+          z-index: 1;
         }
 
         .hero-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 40px;
+          position: relative;
+          z-index: 2;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 80px;
+          grid-template-columns: 1fr 0.8fr;
+          gap: 4rem;
           align-items: center;
-        }
-
-        /* Content Styles */
-        .hero-content {
-          max-width: 540px;
         }
 
         .hero-welcome {
-          font-size: clamp(44px, 5.5vw, 60px);
-          font-weight: 800;
-          color: #0f172a;
-          margin-bottom: 8px;
-          letter-spacing: -2px;
-          line-height: 1.05;
-        }
-
-        .hero-name {
-          font-size: 20px;
-          color: #334155;
-          margin-bottom: 16px;
+          font-family: var(--font-sans);
+          font-size: 0.9rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          margin-bottom: 1rem;
           font-weight: 600;
-          letter-spacing: -0.3px;
-          padding-left: 2px; /* nudge right for better visual alignment */
         }
 
         .hero-title {
-          font-size: clamp(42px, 5vw, 56px);
-          font-weight: 700;
-          line-height: 1.1;
-          margin-bottom: 24px;
-          letter-spacing: -2px;
-          color: #0f172a;
+          font-family: var(--font-serif);
+          font-size: clamp(3.5rem, 6vw, 6rem);
+          line-height: 1;
+          margin-bottom: 1.5rem;
+          color: var(--color-white);
         }
 
-        .hero-title span {
-          background: linear-gradient(135deg, #dc2626, #7f1d1d);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          display: inline-block;
-        }
-
-        .hero-description {
-          font-size: 17px;
-          line-height: 1.7;
-          color: #475569;
-          margin-bottom: 40px;
-          letter-spacing: -0.2px;
-        }
-
-        /* Buttons */
-        .hero-actions {
-          display: flex;
-          gap: 16px;
-          margin-bottom: 60px;
-          flex-wrap: wrap;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 14px 32px;
-          font-size: 15px;
-          font-weight: 500;
-          border-radius: 50px;
-          text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          cursor: pointer;
-          position: relative;
+        .hero-subtitle-wrapper {
+          height: 3rem;
+          margin-bottom: 2rem;
           overflow: hidden;
         }
 
-        .btn-primary {
-          background: #dc2626;
-          color: white;
-          border: 2px solid transparent;
+        .hero-dynamic-title {
+          font-family: var(--font-serif);
+          font-size: 2rem;
+          color: var(--color-text-muted);
+          font-weight: 400;
+          font-style: italic;
         }
 
-        .btn-primary::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.15);
-          transform: translate(-50%, -50%);
-          transition: width 0.6s, height 0.6s;
+        .hero-description {
+          max-width: 500px;
+          font-size: 1.1rem;
+          line-height: 1.8;
+          color: var(--color-text-secondary);
+          margin-bottom: 3rem;
+          border-left: 2px solid var(--color-gold-500);
+          padding-left: 1.5rem;
         }
 
-        .btn-primary:hover::before {
-          width: 300px;
-          height: 300px;
+        .hero-actions {
+          display: flex;
+          gap: 1.5rem;
+          margin-bottom: 4rem;
         }
 
-        .btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 30px rgba(220, 38, 38, 0.25);
-        }
-
-        .btn-primary svg {
-          transition: transform 0.3s ease;
-        }
-
-        .btn-primary:hover svg {
-          transform: translateX(3px);
-        }
-
-        .btn-secondary {
-          background: transparent;
-          color: #dc2626;
-          border: 2px solid #dc2626;
-        }
-
-        .btn-secondary:hover {
-          background: rgba(220, 38, 38, 0.05);
-          transform: translateY(-2px);
-        }
-
-        /* Stats */
         .hero-stats {
           display: flex;
-          gap: 48px;
+          align-items: center;
+          gap: 2rem;
         }
 
-        .stat h3 {
-          font-size: 32px;
-          font-weight: 700;
-          color: #dc2626;
-          margin-bottom: 4px;
-          letter-spacing: -1px;
+        .stat-item {
+          display: flex;
+          flex-direction: column;
         }
 
-        .stat p {
-          font-size: 14px;
-          color: #64748b;
-          font-weight: 500;
-          letter-spacing: -0.2px;
+        .stat-number {
+          font-family: var(--font-serif);
+          font-size: 2.5rem;
+          color: var(--color-white);
+          line-height: 1;
         }
 
-        /* Image */
-        .hero-image {
-          position: relative;
+        .stat-label {
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--color-gold-500);
+          margin-top: 0.5rem;
+        }
+
+        .stat-divider {
+          width: 1px;
+          height: 40px;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Image Styling */
+        .hero-image-container {
           display: flex;
           justify-content: center;
         }
 
-        .image-wrapper {
+        .hero-image-frame {
           position: relative;
-        }
-
-        .image-frame {
-          position: relative;
-          border-radius: 24px;
-          overflow: hidden;
-          background: linear-gradient(135deg, #fef2f2, #fecaca);
-          padding: 4px;
-        }
-
-        .image-frame img {
           width: 100%;
-          max-width: 420px;
+          max-width: 500px;
+        }
+
+        .hero-img {
+          width: 100%;
           height: auto;
           display: block;
-          border-radius: 20px;
+          position: relative;
+          z-index: 2;
+          filter: contrast(1.1) brightness(0.9);
+          border-radius: 4px;
         }
 
-        .image-decoration {
+        .frame-border-1 {
           position: absolute;
           top: -20px;
           right: -20px;
-          width: 100px;
-          height: 100px;
-          background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), transparent);
-          border-radius: 50%;
-          filter: blur(40px);
+          bottom: 20px;
+          left: 20px;
+          border: 2px solid var(--color-gold-500);
+          z-index: 1;
+          opacity: 0.5;
         }
 
-        /* Scroll Hint */
-        .scroll-hint {
+        .frame-border-2 {
           position: absolute;
-          bottom: 40px;
-          left: 50%;
-          transform: translateX(-50%);
-          color: #94a3b8;
+          top: 20px;
+          right: 20px;
+          bottom: -20px;
+          left: -20px;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          z-index: 0;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-          .hero-minimal {
-            padding: 90px 0 60px;
-          }
-
+        @media (max-width: 960px) {
           .hero-container {
             grid-template-columns: 1fr;
-            gap: 48px;
-            padding: 0 24px;
             text-align: center;
+            gap: 3rem;
           }
 
           .hero-content {
-            order: 2;
-            max-width: 100%;
-          }
-
-          .hero-image {
-            order: 1;
-          }
-
-          .image-frame img {
-            max-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
 
           .hero-welcome {
-            font-size: 30px;
+            font-size: 0.8rem;
           }
-
-          .hero-name {
-            font-size: 16px;
-          }
-
-          .hero-title {
-            font-size: 36px;
-            letter-spacing: -1px;
-          }
-
+          
           .hero-description {
-            font-size: 16px;
-          }
-
-          .hero-actions {
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-          }
-
-          .btn-primary,
-          .btn-secondary {
-            width: 100%;
-            max-width: 280px;
-            justify-content: center;
+            border-left: none;
+            padding-left: 0;
           }
 
           .hero-stats {
-            justify-content: space-around;
-            width: 100%;
-            gap: 20px;
+            justify-content: center;
           }
-
-          .stat h3 {
-            font-size: 24px;
-          }
-
-          .stat p {
-            font-size: 12px;
-          }
-
-          .scroll-hint {
-            display: none;
-          }
-
-          .image-decoration {
-            display: none;
+          
+          .hero-image-frame {
+            max-width: 400px;
+            margin: 0 auto;
           }
         }
 
         @media (max-width: 480px) {
-          .hero-minimal {
-            padding: 80px 0 40px;
-          }
-
-          .hero-container {
-            padding: 0 20px;
-          }
-
           .hero-title {
-            font-size: 32px;
+            font-size: 3rem;
           }
-
-          .image-frame img {
-            max-width: 240px;
+          
+          .hero-actions {
+            flex-direction: column;
+            width: 100%;
           }
-
-          .hero-welcome {
-            font-size: 36px;
-          }
-
-          .hero-name {
-            font-size: 16px;
-          }
-
-          .stat h3 {
-            font-size: 20px;
+          
+          .btn-luxury {
+            width: 100%;
           }
         }
       `}</style>

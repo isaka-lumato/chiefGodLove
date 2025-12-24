@@ -4,114 +4,76 @@ import { FaQuoteLeft, FaAward, FaUsers, FaHeart } from "react-icons/fa";
 
 export default function AboutMeModern() {
   const achievements = [
-    { icon: <FaAward />, label: "10+ Awards", description: "Recognition for leadership" },
-    { icon: <FaUsers />, label: "50K+ Followers", description: "Social media reach" },
-    { icon: <FaHeart />, label: "1000+ Lives", description: "Directly transformed" }
+    { number: "15+", label: "Years Experience" },
+    { number: "50K+", label: "Followers Reach" },
+    { number: "1K+", label: "Lives Changed" }
   ];
 
   return (
-    <section id="AboutMe" className="about-modern">
-      <div className="container">
+    <section id="AboutMe" className="about-luxury">
+      <div className="container-luxury">
         <div className="about-grid">
-          {/* Left Column - Image and Stats */}
-          <motion.div 
+          {/* Left Column - Image */}
+          <motion.div
             className="about-image-col"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="image-container">
-              <motion.img 
-                src="./img/hero33.jpg" 
-                alt="Chief Godlove" 
-                className="about-image"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+            <div className="image-frame-luxury">
+              <img
+                src="./img/hero33.jpg"
+                alt="Chief Godlove"
+                className="about-img"
               />
-              <div className="image-decoration"></div>
-              
-              {/* Floating achievement cards */}
-              <motion.div 
-                className="achievement-card card-1"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <span className="achievement-number">15+</span>
-                <span className="achievement-text">Years Experience</span>
-              </motion.div>
-
-              <motion.div 
-                className="achievement-card card-2"
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-              >
-                <span className="achievement-number">3</span>
-                <span className="achievement-text">Businesses Founded</span>
-              </motion.div>
+              <div className="frame-border"></div>
             </div>
           </motion.div>
 
           {/* Right Column - Content */}
-          <motion.div 
+          <motion.div
             className="about-content-col"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <div className="content-wrapper">
-              <span className="section-label">Get to Know Me</span>
-              <h2 className="section-title">
-                I'm Chief Godlove
-                <span className="text-gradient"> Mwakibete</span>
+              <span className="section-label-luxury">The Story</span>
+
+              <h2 className="section-title-luxury">
+                Driven by <span className="text-gold">Faith</span>,<br />
+                Defined by <span className="text-gold">Purpose</span>.
               </h2>
 
-              <div className="quote-block">
-                <FaQuoteLeft className="quote-icon" />
-                <p className="lead-text">
-                  A visionary leader dedicated to transforming lives through faith, 
-                  purpose, and unwavering commitment to social impact.
+              <div className="quote-luxury">
+                <FaQuoteLeft className="quote-icon-gold" />
+                <p>
+                  "True leadership isn't about power; it's about empowering others to find their own strength and walk in their divine purpose."
                 </p>
               </div>
 
-              <div className="about-description">
+              <div className="about-text-luxury">
                 <p>
-                  Godlove Jackob Mwakibete, widely recognized as <strong>Chief Godlove</strong>, 
-                  is a dynamic philanthropist, visionary spiritual healer, award-winning 
-                  motivational speaker, and a respected prophet. He is the founder and 
-                  driving force behind transformative ventures that uplift marginalized 
-                  communities, empower youth, and inspire hope across Tanzania and beyond.
+                  I am <strong className="text-gold">Chief Godlove Mwakibete</strong>, a visionary leader, spiritual mentor, and entrepreneur dedicated to uplifting humanity. My mission is simple yet profound: to awaken the dormant potential within every individual I encounter.
                 </p>
-
                 <p>
-                  From humble beginnings in Mbeya, Chief Godlove has risen to national 
-                  and continental prominence through relentless dedication to social impact, 
-                  spiritual guidance, and economic empowerment. His journey is one of faith, 
-                  vision, and action — touching thousands of lives through his ministry, 
-                  charitable efforts, and public engagements.
+                  Through years of service, I have witnessed the transformative power of faith and focused action. Whether through large-scale speaking engagements, intimate mentorship, or philanthropic ventures, I strive to leave a legacy of hope, dignity, and tangible progress for the people of Tanzania and the world.
                 </p>
               </div>
 
-              {/* Achievement Grid */}
-              <div className="achievements-grid">
+              <div className="achievements-row-luxury">
                 {achievements.map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    className="achievement-item"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="achievement-icon">{item.icon}</div>
-                    <div className="achievement-content">
-                      <h4>{item.label}</h4>
-                      <p>{item.description}</p>
-                    </div>
-                  </motion.div>
+                  <div key={index} className="achievement-item-luxury">
+                    <span className="ach-number">{item.number}</span>
+                    <span className="ach-label">{item.label}</span>
+                  </div>
                 ))}
+              </div>
+
+              <div className="about-cta">
+                <button className="btn-luxury">Read My Full Journey</button>
               </div>
 
             </div>
@@ -120,227 +82,166 @@ export default function AboutMeModern() {
       </div>
 
       <style jsx>{`
-        .about-modern {
-          padding: 6rem 0;
-          background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        .about-luxury {
+          padding: 8rem 0;
+          background-color: var(--color-black-light);
           position: relative;
-          overflow: hidden;
-        }
-
-        .about-modern::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          right: -20%;
-          width: 60%;
-          height: 150%;
-          background: radial-gradient(circle, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
-          z-index: 0;
-        }
-
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 1.5rem;
-          position: relative;
-          z-index: 1;
         }
 
         .about-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 4rem;
+          gap: 6rem;
           align-items: center;
         }
 
-        .image-container {
+        /* Image Styling */
+        .image-frame-luxury {
           position: relative;
+          padding: 20px;
         }
 
-        .about-image {
+        .about-img {
           width: 100%;
           height: auto;
-          border-radius: 20px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .image-decoration {
-          position: absolute;
-          top: -20px;
-          left: -20px;
-          right: 20px;
-          bottom: 20px;
-          border: 3px solid #dc2626;
-          border-radius: 20px;
-          z-index: -1;
-        }
-
-        .achievement-card {
-          position: absolute;
-          background: white;
-          padding: 1rem;
-          border-radius: 12px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          z-index: 10;
-        }
-
-        .card-1 {
-          top: 10%;
-          right: -30px;
-        }
-
-        .card-2 {
-          bottom: 10%;
-          left: -30px;
-        }
-
-        .achievement-number {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #dc2626;
-        }
-
-        .achievement-text {
-          font-size: 0.75rem;
-          color: #64748b;
-          text-align: center;
-        }
-
-        .section-label {
-          display: inline-block;
-          padding: 0.5rem 1rem;
-          background: rgba(220, 38, 38, 0.1);
-          color: #dc2626;
-          border-radius: 50px;
-          font-weight: 600;
-          font-size: 0.875rem;
-          margin-bottom: 1rem;
-        }
-
-        .section-title {
-          font-size: 3rem;
-          font-weight: 700;
-          margin-bottom: 2rem;
-          color: #1e293b;
-          line-height: 1.2;
-        }
-
-        .text-gradient {
-          background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        .quote-block {
+          display: block;
+          filter: grayscale(100%) contrast(1.1); /* Artistic B&W look */
+          transition: filter 0.5s ease;
           position: relative;
-          padding-left: 3rem;
-          margin-bottom: 2rem;
+          z-index: 2;
         }
 
-        .quote-icon {
+        .about-img:hover {
+          filter: grayscale(0%) contrast(1); /* Color on hover */
+        }
+
+        .frame-border {
           position: absolute;
-          left: 0;
           top: 0;
-          font-size: 2rem;
-          color: #dc2626;
-          opacity: 0.2;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 1px solid var(--color-gold-500);
+          z-index: 1;
+          transform: translate(-20px, 20px);
+          transition: transform 0.5s ease;
         }
 
-        .lead-text {
+        .image-frame-luxury:hover .frame-border {
+          transform: translate(-10px, 10px);
+        }
+
+        /* Content Styling */
+        .section-label-luxury {
+          display: inline-block;
+          font-family: var(--font-sans);
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2rem;
+          color: var(--color-gold-500);
+          margin-bottom: 1.5rem;
+          border-bottom: 1px solid var(--color-gold-500);
+          padding-bottom: 5px;
+        }
+
+        .section-title-luxury {
+          font-family: var(--font-serif);
+          font-size: 3.5rem;
+          line-height: 1.1;
+          color: var(--color-white);
+          margin-bottom: 3rem;
+        }
+
+        .quote-luxury {
+          position: relative;
+          padding-left: 2rem;
+          margin-bottom: 3rem;
+          border-left: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .quote-icon-gold {
+          position: absolute;
+          top: -10px;
+          left: 10px;
+          font-size: 1.5rem;
+          color: var(--color-gold-500);
+          opacity: 0.5;
+        }
+
+        .quote-luxury p {
+          font-family: var(--font-serif);
           font-size: 1.25rem;
-          color: #475569;
-          font-weight: 500;
+          font-style: italic;
+          color: var(--color-text-main);
           line-height: 1.6;
         }
 
-        .about-description {
-          margin-bottom: 2rem;
+        .about-text-luxury {
+          margin-bottom: 3rem;
         }
 
-        .about-description p {
-          color: #64748b;
+        .about-text-luxury p {
+          margin-bottom: 1.5rem;
+          color: var(--color-text-secondary);
           line-height: 1.8;
-          margin-bottom: 1rem;
+          font-weight: 300;
         }
 
-        .about-description strong {
-          color: #dc2626;
-        }
-
-        .achievements-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
-          margin: 2rem 0;
-        }
-
-        .achievement-item {
+        /* Achievements */
+        .achievements-row-luxury {
           display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1rem;
-          background: white;
-          border-radius: 12px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-          transition: all 0.3s ease;
-          cursor: pointer;
+          gap: 4rem;
+          margin-bottom: 3rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding-top: 2rem;
         }
 
-        .achievement-item:hover {
-          box-shadow: 0 8px 25px rgba(220, 38, 38, 0.15);
-        }
-
-        .achievement-icon {
-          width: 40px;
-          height: 40px;
-          background: rgba(220, 38, 38, 0.1);
-          border-radius: 10px;
+        .achievement-item-luxury {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #dc2626;
-          font-size: 1.25rem;
+          flex-direction: column;
         }
 
-        .achievement-content h4 {
-          font-size: 1rem;
+        .ach-number {
+          font-family: var(--font-serif);
+          font-size: 2rem;
+          color: var(--color-gold-500);
           font-weight: 700;
-          color: #1e293b;
-          margin-bottom: 0.25rem;
         }
 
-        .achievement-content p {
+        .ach-label {
           font-size: 0.75rem;
-          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--color-text-muted);
+          margin-top: 5px;
         }
 
-        .about-cta {
-          margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 960px) {
           .about-grid {
             grid-template-columns: 1fr;
+            gap: 4rem;
+          }
+
+          .about-image-col {
+            order: 2; /* Image below content on mobile? Or above? Let's keep above for now usually */
+            order: 1; 
+          }
+          
+          .about-content-col {
+            order: 2;
+          }
+
+          .section-title-luxury {
+            font-size: 2.5rem;
+          }
+
+          .quote-luxury {
+            padding-left: 1.5rem;
+          }
+
+          .achievements-row-luxury {
             gap: 2rem;
-          }
-
-          .achievement-card {
-            display: none;
-          }
-
-          .achievements-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .section-title {
-            font-size: 2rem;
-          }
-
-          .quote-block {
-            padding-left: 2rem;
+            flex-wrap: wrap;
           }
         }
       `}</style>

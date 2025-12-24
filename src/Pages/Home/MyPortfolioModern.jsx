@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaExpand, FaArrowRight } from "react-icons/fa";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaExpand, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-scroll";
 import data from "../../data/index.json";
 
@@ -8,296 +8,221 @@ export default function MyPortfolioModern() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section className="portfolio-modern section" id="MyPortfolio">
-      <div className="container">
+    <section className="portfolio-luxury section" id="MyPortfolio">
+      <div className="container-luxury">
         {/* Section Header */}
-        <motion.div 
-          className="section-header"
+        <motion.div
+          className="section-header-luxury"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          <span className="section-label">My Ventures</span>
-          <h2 className="section-title">
-            Transformative <span className="text-gradient">Business Ventures</span>
+          <span className="section-label-luxury">Ventures</span>
+          <h2 className="section-title-luxury text-center">
+            Pillars of <span className="text-gold">Influence</span>
           </h2>
-          <p className="section-description">
-            Explore my diverse portfolio of businesses and initiatives that are making 
-            a positive impact across communities in Tanzania and beyond.
+          <p className="section-description-luxury">
+            A curation of transformative initiatives reshaping industries and communities.
           </p>
         </motion.div>
 
         {/* Portfolio Grid */}
-        <motion.div 
-          className="portfolio-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="portfolio-grid-luxury">
           {data?.portfolio?.map((item, index) => (
             <motion.div
               key={item.id}
-              className={`portfolio-card ${hoveredIndex === index ? 'hovered' : ''}`}
-              variants={itemVariants}
+              className="card-luxury-item"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ y: -10 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              onClick={() => setSelectedProject(item)}
             >
-              {/* Card Image Container */}
-              <div className="card-image-container">
-                <motion.img 
-                  src={item.src} 
-                  alt={item.title}
-                  className="card-image"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.4 }}
-                />
+              <div className="card-image-wrap">
+                <img src={item.src} alt={item.title} className="card-img" />
                 <div className="card-overlay">
-                  <motion.button
-                    className="view-btn"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedProject(item)}
-                  >
-                    <FaExpand /> Quick View
-                  </motion.button>
+                  <span className="view-text">Explore Venture</span>
                 </div>
-                
-                {/* Badge */}
-                <span className="card-badge">
-                  {index === 0 ? "Main Company" : index === 1 ? "Foundation" : "Media"}
-                </span>
               </div>
 
-              {/* Card Content */}
-              <div className="card-content">
-                <h3 className="card-title">{item.title}</h3>
-                
-                {/* Description with smart truncation */}
-                <p className="card-description">
+              <div className="card-content-luxury">
+                <div className="card-meta">
+                  <span className="card-category text-gold">
+                    {index === 0 ? "Enterprise" : index === 1 ? "Philanthropy" : "Media"}
+                  </span>
+                </div>
+
+                <h3 className="card-title-luxury">{item.title}</h3>
+                <p className="card-desc-luxury">
                   {item.description.split('\n\n')[0]}
                 </p>
 
-                {/* Features/Highlights */}
-                <div className="card-features">
-                  {index === 0 && (
-                    <>
-                      <span className="feature-tag">Business</span>
-                      <span className="feature-tag">Consulting</span>
-                      <span className="feature-tag">Leadership</span>
-                    </>
-                  )}
-                  {index === 1 && (
-                    <>
-                      <span className="feature-tag">Non-Profit</span>
-                      <span className="feature-tag">Community</span>
-                      <span className="feature-tag">Support</span>
-                    </>
-                  )}
-                  {index === 2 && (
-                    <>
-                      <span className="feature-tag">Media</span>
-                      <span className="feature-tag">Content</span>
-                      <span className="feature-tag">Inspiration</span>
-                    </>
-                  )}
+                <div className="card-footer">
+                  <span className="read-more">View Details <FaArrowRight className="icon-arrow" /></span>
                 </div>
-
-                {/* Action Button */}
-                <Link
-                  to="footer"
-                  smooth={true}
-                  duration={500}
-                  className="card-action-btn"
-                >
-                  Contact Us <FaArrowRight />
-                </Link>
               </div>
-
-              {/* Animated Border */}
-              <motion.div 
-                className="card-border"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Stats Section */}
-        <motion.div 
-          className="portfolio-stats"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="stat-card">
-            <h3>3+</h3>
-            <p>Active Ventures</p>
+        {/* Stats Section - Luxury */}
+        <div className="stats-luxury-container">
+          <div className="stat-luxury">
+            <h3 className="text-gold">3+</h3>
+            <p>Global Ventures</p>
           </div>
-          <div className="stat-card">
-            <h3>1000+</h3>
-            <p>People Impacted</p>
+          <div className="stat-luxury">
+            <h3 className="text-gold">1K+</h3>
+            <p>Lives Impacted</p>
           </div>
-          <div className="stat-card">
-            <h3>5+</h3>
-            <p>Years Operating</p>
+          <div className="stat-luxury">
+            <h3 className="text-gold">5+</h3>
+            <p>Years of Excellence</p>
           </div>
-          <div className="stat-card">
-            <h3>10+</h3>
-            <p>Team Members</p>
-          </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Modal/Popup for selected project */}
-      {selectedProject && (
-        <motion.div 
-          className="project-modal"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setSelectedProject(null)}
-        >
-          <motion.div 
-            className="modal-content"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            onClick={(e) => e.stopPropagation()}
+      {/* Modal/Popup */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="modal-backdrop-luxury"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
           >
-            <button 
-              className="close-btn"
-              onClick={() => setSelectedProject(null)}
+            <motion.div
+              className="modal-content-luxury"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 50, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              ×
-            </button>
-            <img src={selectedProject.src} alt={selectedProject.title} />
-            <h2>{selectedProject.title}</h2>
-            <p>{selectedProject.description}</p>
+              <button
+                className="close-btn-luxury"
+                onClick={() => setSelectedProject(null)}
+              >
+                ×
+              </button>
+
+              <div className="modal-grid">
+                <div className="modal-image-col">
+                  <img src={selectedProject.src} alt={selectedProject.title} />
+                </div>
+                <div className="modal-text-col">
+                  <span className="modal-category text-gold">Selected Venture</span>
+                  <h2>{selectedProject.title}</h2>
+                  <div className="modal-description">
+                    <p>{selectedProject.description}</p>
+                  </div>
+                  <Link
+                    to="footer"
+                    smooth={true}
+                    className="btn-luxury btn-luxury-filled"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    Inquire About Partnership
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
 
       <style jsx>{`
-        .portfolio-modern {
-          padding: 6rem 0;
-          background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+        .portfolio-luxury {
+          padding: 8rem 0;
+          background-color: var(--color-black-rich);
           position: relative;
         }
 
-        .container {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 0 2rem;
-        }
-
-        .section-header {
+        .section-header-luxury {
           text-align: center;
-          margin-bottom: 5rem;
-          padding: 0 1rem;
+          margin-bottom: 6rem;
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
-        .section-label {
+        .section-label-luxury {
           display: inline-block;
-          padding: 0.5rem 1rem;
-          background: rgba(220, 38, 38, 0.1);
-          color: #dc2626;
-          border-radius: 50px;
-          font-weight: 600;
-          font-size: 0.875rem;
+          font-family: var(--font-sans);
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2rem;
+          color: var(--color-gold-500);
           margin-bottom: 1rem;
         }
 
-        .section-title {
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
+        .section-title-luxury {
+          font-family: var(--font-serif);
+          font-size: 3rem;
+          color: var(--color-white);
           margin-bottom: 1.5rem;
-          color: #1e293b;
-          line-height: 1.2;
         }
 
-        .section-description {
-          font-size: 1.125rem;
-          color: #64748b;
-          max-width: 700px;
-          margin: 0 auto;
-          line-height: 1.7;
+        .section-description-luxury {
+          color: var(--color-text-secondary);
+          font-size: 1.1rem;
+          font-weight: 300;
         }
 
-        .portfolio-grid {
+        /* Grid */
+        .portfolio-grid-luxury {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-          gap: 2.5rem;
-          margin-bottom: 4rem;
-          padding: 0 1rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          margin-bottom: 6rem;
         }
 
-        .portfolio-card {
-          background: white;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
-          position: relative;
+        .card-luxury-item {
+          background: rgba(30, 30, 30, 0.3);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          transition: all 0.4s ease;
+          cursor: pointer;
           display: flex;
           flex-direction: column;
-          height: 100%;
         }
 
-        .portfolio-card:hover {
-          box-shadow: 0 10px 40px rgba(220, 38, 38, 0.15);
+        .card-luxury-item:hover {
+          background: rgba(40, 40, 40, 0.5);
+          border-color: var(--color-gold-500);
+          transform: translateY(-5px);
         }
 
-        .card-image-container {
+        .card-image-wrap {
           position: relative;
-          height: 280px;
+          height: 250px;
           overflow: hidden;
-          background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
         }
 
-        .card-image {
+        .card-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.4s ease;
+          transition: transform 0.6s ease;
+          filter: grayscale(100%);
+        }
+
+        .card-luxury-item:hover .card-img {
+          transform: scale(1.05);
+          filter: grayscale(0%);
         }
 
         .card-overlay {
           position: absolute;
           top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -305,229 +230,194 @@ export default function MyPortfolioModern() {
           transition: opacity 0.3s ease;
         }
 
-        .portfolio-card:hover .card-overlay {
+        .card-luxury-item:hover .card-overlay {
           opacity: 1;
         }
 
-        .view-btn {
-          padding: 0.75rem 1.5rem;
-          background: white;
-          color: #dc2626;
-          border: none;
-          border-radius: 8px;
-          font-weight: 600;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          transition: all 0.3s ease;
-        }
-
-        .view-btn:hover {
-          background: #dc2626;
-          color: white;
-        }
-
-        .card-badge {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          padding: 0.5rem 1rem;
-          background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-          color: white;
-          border-radius: 8px;
-          font-size: 0.75rem;
-          font-weight: 600;
-          box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+        .view-text {
+          color: var(--color-white);
+          font-family: var(--font-sans);
           text-transform: uppercase;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.15em;
+          font-size: 0.8rem;
+          border: 1px solid var(--color-white);
+          padding: 10px 20px;
         }
 
-        .card-content {
+        .card-content-luxury {
           padding: 2rem;
           flex: 1;
           display: flex;
           flex-direction: column;
         }
 
-        .card-title {
-          font-size: 1.35rem;
-          font-weight: 700;
-          color: #1e293b;
-          margin-bottom: 1rem;
-          line-height: 1.3;
-          min-height: 3.5rem;
-          display: flex;
-          align-items: center;
-        }
-
-        .card-description {
-          color: #64748b;
-          line-height: 1.8;
-          margin-bottom: 1.5rem;
-          flex: 1;
-          font-size: 0.95rem;
-        }
-
-        .card-features {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .feature-tag {
-          padding: 0.25rem 0.75rem;
-          background: rgba(220, 38, 38, 0.1);
-          color: #dc2626;
-          border-radius: 4px;
-          font-size: 0.75rem;
-          font-weight: 500;
-        }
-
-        .card-action-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.875rem 1.75rem;
-          background: transparent;
-          color: #dc2626;
-          border: 2px solid #dc2626;
-          border-radius: 10px;
+        .card-category {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
           font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          margin-top: auto;
         }
 
-        .card-action-btn:hover {
-          background: #dc2626;
-          color: white;
+        .card-title-luxury {
+          font-family: var(--font-serif);
+          font-size: 1.5rem;
+          color: var(--color-white);
+          margin: 0.5rem 0 1rem;
         }
 
-        .card-border {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(90deg, #dc2626 0%, #fbbf24 100%);
-          transform-origin: left;
+        .card-desc-luxury {
+          font-size: 0.9rem;
+          color: var(--color-text-secondary);
+          margin-bottom: 2rem;
+          line-height: 1.6;
+          flex: 1;
         }
 
-        .portfolio-stats {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 2rem;
-          padding: 3rem;
-          background: white;
-          border-radius: 16px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        .card-footer {
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding-top: 1rem;
         }
 
-        .stat-card {
+        .read-more {
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--color-gold-500);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .icon-arrow {
+          transition: transform 0.3s ease;
+        }
+
+        .card-luxury-item:hover .icon-arrow {
+          transform: translateX(5px);
+        }
+
+        /* Stats */
+        .stats-luxury-container {
+          display: flex;
+          justify-content: center;
+          gap: 6rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding-top: 4rem;
+        }
+
+        .stat-luxury {
           text-align: center;
         }
 
-        .stat-card h3 {
+        .stat-luxury h3 {
+          font-family: var(--font-serif);
           font-size: 2.5rem;
-          font-weight: 700;
-          color: #dc2626;
           margin-bottom: 0.5rem;
         }
 
-        .stat-card p {
-          color: #64748b;
-          font-weight: 500;
+        .stat-luxury p {
+          color: var(--color-text-muted);
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.1em;
         }
 
-        .project-modal {
+        /* Modal */
+        .modal-backdrop-luxury {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.8);
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(5px);
+          z-index: 2000;
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 2000;
           padding: 2rem;
         }
 
-        .modal-content {
-          background: white;
-          border-radius: 16px;
-          max-width: 800px;
+        .modal-content-luxury {
+          background: var(--color-black-light);
+          border: 1px solid rgba(212, 175, 55, 0.2);
+          max-width: 1000px;
           width: 100%;
-          max-height: 90vh;
-          overflow-y: auto;
-          padding: 2rem;
           position: relative;
+          padding: 0;
+          overflow: hidden;
         }
 
-        .modal-content img {
+        .modal-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-image-col img {
           width: 100%;
-          height: 300px;
+          height: 100%;
           object-fit: cover;
-          border-radius: 12px;
+          display: block;
+        }
+
+        .modal-text-col {
+          padding: 3rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .modal-category {
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          margin-bottom: 1rem;
+          display: block;
+        }
+
+        .modal-text-col h2 {
+          font-family: var(--font-serif);
+          font-size: 2.5rem;
+          color: var(--color-white);
           margin-bottom: 1.5rem;
         }
 
-        .modal-content h2 {
-          font-size: 2rem;
-          color: #1e293b;
-          margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-          color: #64748b;
+        .modal-description {
+          color: var(--color-text-secondary);
           line-height: 1.8;
+          margin-bottom: 2rem;
+          font-weight: 300;
         }
 
-        .close-btn {
+        .close-btn-luxury {
           position: absolute;
           top: 1rem;
           right: 1rem;
-          width: 40px;
-          height: 40px;
+          background: transparent;
           border: none;
-          background: rgba(0, 0, 0, 0.1);
-          border-radius: 50%;
-          font-size: 1.5rem;
+          color: var(--color-white);
+          font-size: 2rem;
           cursor: pointer;
-          transition: all 0.3s ease;
+          z-index: 10;
         }
 
-        .close-btn:hover {
-          background: #dc2626;
-          color: white;
-        }
-
-        @media (min-width: 1200px) {
-          .portfolio-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        @media (max-width: 1199px) and (min-width: 768px) {
-          .portfolio-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 767px) {
-          .portfolio-grid {
+        @media (max-width: 960px) {
+          .portfolio-grid-luxury {
             grid-template-columns: 1fr;
-            padding: 0;
+          }
+          
+          .stats-luxury-container {
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
           }
 
-          .section-title {
-            font-size: 2rem;
+          .modal-grid {
+            grid-template-columns: 1fr;
           }
 
-          .portfolio-stats {
-            grid-template-columns: repeat(2, 1fr);
+          .modal-image-col {
+            height: 250px;
           }
         }
       `}</style>
