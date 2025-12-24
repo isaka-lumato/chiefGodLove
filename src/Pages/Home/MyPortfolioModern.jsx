@@ -113,7 +113,18 @@ export default function MyPortfolioModern() {
 
               <div className="modal-grid">
                 <div className="modal-image-col">
-                  <img src={selectedProject.src} alt={selectedProject.title} />
+                  {selectedProject.video ? (
+                    <div className="modal-video-wrapper">
+                      <iframe
+                        src={selectedProject.video}
+                        title={selectedProject.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <img src={selectedProject.src} alt={selectedProject.title} />
+                  )}
                 </div>
                 <div className="modal-text-col">
                   <span className="modal-category text-gold">Selected Venture</span>
@@ -419,6 +430,18 @@ export default function MyPortfolioModern() {
           .modal-image-col {
             height: 250px;
           }
+        }
+
+        .modal-video-wrapper {
+          width: 100%;
+          height: 100%;
+          min-height: 300px;
+        }
+
+        .modal-video-wrapper iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
         }
       `}</style>
     </section>
