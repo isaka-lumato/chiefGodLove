@@ -1,7 +1,72 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function MissionSection() {
+  const sectionRef = useRef(null);
+  const imageColRef = useRef(null);
+  const contentColRef = useRef(null);
+  const pointsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Image Animation
+      gsap.fromTo(imageColRef.current,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+          }
+        }
+      );
+
+      // Content Animation
+      gsap.fromTo(contentColRef.current,
+        { opacity: 0, x: 50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+          }
+        }
+      );
+
+      // Points Stagger
+      gsap.fromTo(pointsRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: contentColRef.current,
+            start: "top 80%",
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const addToPointsRef = (el) => {
+    if (el && !pointsRef.current.includes(el)) {
+      pointsRef.current.push(el);
+    }
+  };
+
   const missionPoints = [
     { title: "Eradicate Poverty", text: "Empowering vulnerable communities through sustainable economic initiatives." },
     { title: "Youth Empowerment", text: "Mentoring the next generation of leaders to be independent and socially responsible." },
@@ -10,16 +75,13 @@ function MissionSection() {
   ];
 
   return (
-    <section className="mission-luxury" id="Mission">
+    <section className="mission-luxury" id="Mission" ref={sectionRef}>
       <div className="container-luxury">
         <div className="mission-grid">
           {/* Left: Image */}
-          <motion.div
+          <div
             className="mission-image-col"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            ref={imageColRef}
           >
             <div className="mission-img-wrap">
               <img src="./img/mission.png" alt="Mission Godlove" />
@@ -27,15 +89,12 @@ function MissionSection() {
                 <h3>IMPACT</h3>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right: Content */}
-          <motion.div
+          <div
             className="mission-content-col"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            ref={contentColRef}
           >
             <span className="section-label-luxury">The Mission</span>
             <h2 className="section-title-luxury">
@@ -45,22 +104,20 @@ function MissionSection() {
 
             <div className="mission-points">
               {missionPoints.map((point, index) => (
-                <motion.div
+                <div
                   key={index}
                   className="mission-point"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + (index * 0.1) }}
+                  ref={addToPointsRef}
                 >
                   <span className="point-marker">0{index + 1}</span>
                   <div className="point-text">
                     <h4>{point.title}</h4>
                     <p>{point.text}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

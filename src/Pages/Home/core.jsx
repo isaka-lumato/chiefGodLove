@@ -1,6 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaHeart, FaCrown, FaBalanceScale, FaHandHoldingHeart } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const values = [
   {
@@ -26,10 +29,68 @@ const values = [
 ];
 
 function CoreValuesSection() {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header Animation
+      gsap.fromTo(headerRef.current.children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          }
+        }
+      );
+
+      // Cards Animation (Batch stagger)
+      gsap.fromTo(cardsRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const addToCardsRef = (el) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
+
+  const handleMouseEnter = (e) => {
+    gsap.to(e.currentTarget, { y: -10, duration: 0.3, ease: "power2.out" });
+    gsap.to(e.currentTarget.querySelector('.value-icon-box'), { scale: 1.1, backgroundColor: "var(--color-gold-500)", color: "var(--color-black-rich)", duration: 0.3 });
+    gsap.to(e.currentTarget.querySelector('.value-divider'), { width: 60, duration: 0.3 });
+  };
+
+  const handleMouseLeave = (e) => {
+    gsap.to(e.currentTarget, { y: 0, duration: 0.3, ease: "power2.out" });
+    gsap.to(e.currentTarget.querySelector('.value-icon-box'), { scale: 1, backgroundColor: "transparent", color: "var(--color-gold-500)", duration: 0.3 });
+    gsap.to(e.currentTarget.querySelector('.value-divider'), { width: 40, duration: 0.3 });
+  };
+
   return (
-    <section className="core-values-luxury" id="CoreValues">
+    <section className="core-values-luxury" id="CoreValues" ref={sectionRef}>
       <div className="container-luxury">
-        <div className="core-header text-center">
+        <div className="core-header text-center" ref={headerRef}>
           <span className="section-label-luxury">Our Foundation</span>
           <h2 className="section-title-luxury">
             Core <span className="text-gold">Values</span>
@@ -41,13 +102,12 @@ function CoreValuesSection() {
 
         <div className="core-grid">
           {values.map((value, index) => (
-            <motion.div
+            <div
               className="value-card-luxury"
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -10 }}
+              ref={addToCardsRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <div className="value-icon-box">
                 {value.icon}
@@ -55,7 +115,7 @@ function CoreValuesSection() {
               <h3>{value.title}</h3>
               <div className="value-divider"></div>
               <p>{value.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -90,14 +150,14 @@ function CoreValuesSection() {
           border: 1px solid rgba(255, 255, 255, 0.05);
           padding: 2.5rem 2rem;
           text-align: center;
-          transition: all 0.4s ease;
           position: relative;
           overflow: hidden;
+          cursor: pointer;
         }
 
         .value-card-luxury:hover {
-          background: rgba(212, 175, 55, 0.05);
           border-color: var(--color-gold-500);
+          background: rgba(212, 175, 55, 0.05);
         }
 
         .value-icon-box {
@@ -113,13 +173,6 @@ function CoreValuesSection() {
           justify-content: center;
           margin-left: auto;
           margin-right: auto;
-          transition: all 0.4s ease;
-        }
-
-        .value-card-luxury:hover .value-icon-box {
-          background: var(--color-gold-500);
-          color: var(--color-black-rich);
-          transform: scale(1.1);
         }
 
         .value-card-luxury h3 {
@@ -134,11 +187,6 @@ function CoreValuesSection() {
           height: 2px;
           background: var(--color-gold-500);
           margin: 0 auto 1.5rem;
-          transition: width 0.3s ease;
-        }
-
-        .value-card-luxury:hover .value-divider {
-          width: 60px;
         }
 
         .value-card-luxury p {

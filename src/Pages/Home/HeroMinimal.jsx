@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-scroll";
+import gsap from "gsap";
 
 const titles = [
   "Visionary Leader",
@@ -11,11 +11,66 @@ const titles = [
 
 export default function HeroMinimal() {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const titleRef = useRef(null);
+
+  const heroContentRef = useRef(null);
+  const welcomeTextRef = useRef(null);
+  const mainTitleRef = useRef(null);
+  const actionsRef = useRef(null);
+  const statsRef = useRef(null);
+  const imageContainerRef = useRef(null);
+  const dynamicTitleRef = useRef(null);
 
   useEffect(() => {
+    // Initial Animation Timeline
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.fromTo(heroContentRef.current,
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 1 }
+    )
+      .fromTo([welcomeTextRef.current, mainTitleRef.current],
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 },
+        "-=0.5"
+      )
+      .fromTo(dynamicTitleRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5 },
+        "-=0.4"
+      )
+      .fromTo(actionsRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        "-=0.2"
+      )
+      .fromTo(statsRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        "-=0.4"
+      )
+      .fromTo(imageContainerRef.current,
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 1, ease: "power2.out" },
+        "-=1.2"
+      );
+
+    // Dynamic Title Rotation
     const interval = setInterval(() => {
-      setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
+      gsap.to(dynamicTitleRef.current, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        onComplete: () => {
+          setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+          gsap.fromTo(dynamicTitleRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.3 }
+          );
+        }
+      });
     }, 4000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -25,60 +80,42 @@ export default function HeroMinimal() {
 
       <div className="container-luxury hero-container">
         {/* Left Content */}
-        <motion.div
+        <div
           className="hero-content"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          ref={heroContentRef}
+          style={{ opacity: 0 }} // Prevent FOUC
         >
-          <motion.div
+          <div
             className="hero-welcome text-gold"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            ref={welcomeTextRef}
           >
             WELCOME TO THE WORLD OF
-          </motion.div>
-
-          <motion.h1
-            className="hero-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            CHIEF <br /> <span className="text-gradient-gold">GODLOVE</span>
-          </motion.h1>
-
-          <div className="hero-subtitle-wrapper">
-            <AnimatePresence mode="wait">
-              <motion.h2
-                key={currentTitleIndex}
-                className="hero-dynamic-title"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                {titles[currentTitleIndex]}
-              </motion.h2>
-            </AnimatePresence>
           </div>
 
-          <motion.p
-            className="hero-description"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+          <h1
+            className="hero-title"
+            ref={mainTitleRef}
           >
+            CHIEF <br /> <span className="text-gradient-gold">GODLOVE</span>
+          </h1>
+
+          <div className="hero-subtitle-wrapper">
+            <h2
+              className="hero-dynamic-title"
+              ref={dynamicTitleRef}
+            >
+              {titles[currentTitleIndex]}
+            </h2>
+          </div>
+
+          <p className="hero-description" style={{ opacity: 0, animation: "fadeIn 1s forwards 0.8s" }}>
             Empowering lives through faith, leadership, and unwavering purpose.
             Join me on a journey of transformation and discover the power within.
-          </motion.p>
+          </p>
 
-          <motion.div
+          <div
             className="hero-actions"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
+            ref={actionsRef}
           >
             <Link
               to="footer"
@@ -97,13 +134,11 @@ export default function HeroMinimal() {
             >
               Discover More
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             className="hero-stats"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            ref={statsRef}
           >
             <div className="stat-item">
               <span className="stat-number">15+</span>
@@ -119,25 +154,29 @@ export default function HeroMinimal() {
               <span className="stat-number">50+</span>
               <span className="stat-label">Global Events</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Right Image */}
-        <motion.div
+        <div
           className="hero-image-container"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          ref={imageContainerRef}
+          style={{ opacity: 0 }}
         >
           <div className="hero-image-frame">
             <img src="./img/hero43.png" alt="Chief Godlove" className="hero-img" />
             <div className="frame-border-1"></div>
             <div className="frame-border-2"></div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <style jsx>{`
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .hero-luxury {
           min-height: 100vh;
           position: relative;
@@ -198,6 +237,7 @@ export default function HeroMinimal() {
           color: var(--color-text-muted);
           font-weight: 400;
           font-style: italic;
+          display: inline-block;
         }
 
         .hero-description {

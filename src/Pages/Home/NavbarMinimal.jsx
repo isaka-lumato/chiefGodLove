@@ -1,23 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-scroll";
-import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
 
 function NavbarMinimal() {
   const [navActive, setNavActive] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const navRef = useRef(null);
+  const logoRef = useRef(null);
+  const menuItemsRef = useRef([]);
+  const ctaRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const mobileLinksRef = useRef([]);
+
   const toggleNav = () => {
     setNavActive(!navActive);
     if (!navActive) {
       document.body.style.overflow = 'hidden';
+      // Animate Mobile Menu In
+      gsap.to(mobileMenuRef.current, {
+        opacity: 1,
+        pointerEvents: "all",
+        duration: 0.3
+      });
+      gsap.fromTo(mobileLinksRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power2.out", delay: 0.1 }
+      );
     } else {
       document.body.style.overflow = 'unset';
+      // Animate Mobile Menu Out
+      gsap.to(mobileMenuRef.current, {
+        opacity: 0,
+        pointerEvents: "none",
+        duration: 0.3
+      });
     }
   };
 
   const closeMenu = () => {
     setNavActive(false);
     document.body.style.overflow = 'unset';
+    gsap.to(mobileMenuRef.current, {
+      opacity: 0,
+      pointerEvents: "none",
+      duration: 0.3
+    });
   };
 
   useEffect(() => {
@@ -26,8 +54,44 @@ function NavbarMinimal() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
+    // Initial Entrance Animation
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.fromTo(navRef.current,
+      { y: -100 },
+      { y: 0, duration: 0.8 }
+    )
+      .fromTo(logoRef.current,
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.5 },
+        "-=0.5"
+      )
+      .fromTo(menuItemsRef.current,
+        { opacity: 0, y: -10 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 },
+        "-=0.3"
+      )
+      .fromTo(ctaRef.current,
+        { opacity: 0, x: 20 },
+        { opacity: 1, x: 0, duration: 0.5 },
+        "-=0.5"
+      );
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const addToMenuItemsRef = (el) => {
+    if (el && !menuItemsRef.current.includes(el)) {
+      menuItemsRef.current.push(el);
+    }
+  };
+
+  const addToMobileLinksRef = (el) => {
+    if (el && !mobileLinksRef.current.includes(el)) {
+      mobileLinksRef.current.push(el);
+    }
+  };
 
   const navItems = [
     { name: "Home", to: "heroSection" },
@@ -39,15 +103,13 @@ function NavbarMinimal() {
 
   return (
     <>
-      <motion.nav 
+      <nav
         className={`navbar-luxury ${scrolled ? "scrolled" : ""}`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        ref={navRef}
       >
         <div className="nav-container">
           {/* Logo */}
-          <div className="nav-logo">
+          <div className="nav-logo" ref={logoRef}>
             <Link to="heroSection" smooth={true} duration={1000}>
               CHIEF GODLOVE
             </Link>
@@ -56,7 +118,7 @@ function NavbarMinimal() {
           {/* Desktop Navigation */}
           <ul className="nav-menu">
             {navItems.map((item, index) => (
-              <li key={item.name}>
+              <li key={item.name} ref={addToMenuItemsRef}>
                 <Link
                   to={item.to}
                   spy={true}
@@ -73,7 +135,7 @@ function NavbarMinimal() {
           </ul>
 
           {/* CTA Button */}
-          <div className="nav-cta">
+          <div className="nav-cta" ref={ctaRef}>
             <Link
               to="footer"
               smooth={true}
@@ -85,7 +147,7 @@ function NavbarMinimal() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className={`menu-toggle ${navActive ? "active" : ""}`}
             onClick={toggleNav}
             aria-label="Toggle menu"
@@ -96,39 +158,32 @@ function NavbarMinimal() {
         </div>
 
         {/* Mobile Menu Overlay */}
-        <AnimatePresence>
-          {navActive && (
-            <motion.div 
-              className="mobile-menu"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="mobile-content">
-                <ul className="mobile-links">
-                  {navItems.map((item, index) => (
-                    <motion.li
-                      key={item.name}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        to={item.to}
-                        onClick={closeMenu}
-                        smooth={true}
-                        duration={1000}
-                      >
-                        {item.name}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+        <div
+          className="mobile-menu"
+          ref={mobileMenuRef}
+          style={{ opacity: 0, pointerEvents: "none" }}
+        >
+          <div className="mobile-content">
+            <ul className="mobile-links">
+              {navItems.map((item, index) => (
+                <li
+                  key={item.name}
+                  ref={addToMobileLinksRef}
+                >
+                  <Link
+                    to={item.to}
+                    onClick={closeMenu}
+                    smooth={true}
+                    duration={1000}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </nav>
 
       <style jsx>{`
         .navbar-luxury {
