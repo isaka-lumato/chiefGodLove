@@ -30,10 +30,8 @@ function Footer() {
   ];
 
   const contactInfo = [
-    { icon: <FaPhone />, type: "phone", value: "+255 756 382 285" },
-    { icon: <FaPhone />, type: "phone", value: "+255 746 166 686" },
-    { icon: <FaPhone />, type: "phone", value: "+255 758 844 962" },
-    { icon: <FaEnvelope />, type: "email", value: "godlovemwakibete12@gmail.com" },
+    { icon: <FaPhone />, type: "phone", value: "0752245296" },
+    { icon: <FaEnvelope />, type: "email", value: "isakawilly10@gmail.com" },
     { icon: <FaMapMarkerAlt />, type: "location", value: "Tanzania" }
   ];
 
@@ -104,6 +102,9 @@ function Footer() {
 
       <div className="footer-bottom-luxury">
         <p>© {new Date().getFullYear()} Chief Godlove. All Rights Reserved.</p>
+        <p style={{ marginTop: '8px', fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>
+          Developed by Lumatotech
+        </p>
       </div>
 
       <style jsx>{`

@@ -132,14 +132,27 @@ export default function MyPortfolioModern() {
                   <div className="modal-description">
                     <p>{selectedProject.description}</p>
                   </div>
-                  <Link
-                    to="footer"
-                    smooth={true}
-                    className="btn-luxury btn-luxury-filled"
-                    onClick={() => setSelectedProject(null)}
-                  >
-                    Inquire About Partnership
-                  </Link>
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    {selectedProject.link && selectedProject.link.startsWith("http") && (
+                      <a
+                        href={selectedProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-luxury btn-luxury-filled"
+                      >
+                        Visit Website
+                      </a>
+                    )}
+                    <Link
+                      to="footer"
+                      smooth={true}
+                      className="btn-luxury"
+                      style={{ border: '1px solid var(--color-gold-500)', color: 'var(--color-gold-500)', padding: '12px 24px', textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      onClick={() => setSelectedProject(null)}
+                    >
+                      Inquire About Partnership
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

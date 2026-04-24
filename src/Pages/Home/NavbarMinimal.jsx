@@ -101,6 +101,19 @@ function NavbarMinimal() {
     { name: "Gallery", to: "gallery" },
   ];
 
+  // Magnetic Effect for Nav Items
+  const handleMouseEnter = (e) => {
+    gsap.to(e.target, { scale: 1.1, color: "var(--color-gold-500)", duration: 0.3, ease: "back.out(1.7)" });
+  };
+
+  const handleMouseLeave = (e) => {
+    gsap.to(e.target, { scale: 1, color: "var(--color-text-muted)", duration: 0.3, ease: "power2.out" });
+  };
+  // Fix active state color conflict
+  const handleActive = (to) => {
+    // Logic for active state
+  };
+
   return (
     <>
       <nav
@@ -127,6 +140,8 @@ function NavbarMinimal() {
                   duration={1000}
                   className="nav-link"
                   activeClass="active"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   {item.name}
                 </Link>

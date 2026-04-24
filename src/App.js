@@ -9,6 +9,7 @@ import Home from "./Pages/Home/Homescreen";
 import LogoLoader from "./Pages/Home/logo_loader";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import CustomCursor from "./components/CustomCursor";
+import CreativeBackground from "./components/CreativeBackground";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -26,7 +27,18 @@ function App() {
 
   return (
     <div className="App">
+      <CreativeBackground />
       <CustomCursor />
+      
+      {/* Promotional Floating Badge */}
+      <a href="tel:0752245296" className="promo-badge">
+        <div className="badge-icon">📞</div>
+        <div className="promo-badge-text">
+          <span className="badge-title">Want a website like this?</span>
+          <span className="badge-phone">Call 0752245296</span>
+        </div>
+      </a>
+
       <Router>
         <div>
           <NavbarMinimal />

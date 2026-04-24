@@ -107,6 +107,7 @@ const CustomCursor = () => {
           z-index: 9998;
           transform: translate(-50%, -50%);
           transition: border-color 0.2s;
+          mix-blend-mode: difference;
         }
         @media (hover: none) {
           .custom-cursor, .cursor-follower {

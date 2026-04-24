@@ -9,16 +9,34 @@ function MissionSection() {
   const imageColRef = useRef(null);
   const contentColRef = useRef(null);
   const pointsRef = useRef([]);
+  const lineRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // connecting Line Animation
+      gsap.fromTo(lineRef.current,
+        { height: 0 },
+        {
+          height: "100%",
+          duration: 1.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "bottom 80%",
+            scrub: 1
+          }
+        }
+      );
+
       // Image Animation
       gsap.fromTo(imageColRef.current,
-        { opacity: 0, x: -50 },
+        { opacity: 0, x: -50, rotation: -5 },
         {
           opacity: 1,
           x: 0,
-          duration: 1,
+          rotation: 0,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -33,7 +51,7 @@ function MissionSection() {
         {
           opacity: 1,
           x: 0,
-          duration: 1,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -44,12 +62,12 @@ function MissionSection() {
 
       // Points Stagger
       gsap.fromTo(pointsRef.current,
-        { opacity: 0, y: 20 },
+        { opacity: 0, x: 30 },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.15,
+          x: 0,
+          duration: 0.8,
+          stagger: 0.1,
           scrollTrigger: {
             trigger: contentColRef.current,
             start: "top 80%",
@@ -76,6 +94,11 @@ function MissionSection() {
 
   return (
     <section className="mission-luxury" id="Mission" ref={sectionRef}>
+      {/* Decorative Connecting Line */}
+      <div className="connecting-line-container">
+        <div className="connecting-line" ref={lineRef}></div>
+      </div>
+
       <div className="container-luxury">
         <div className="mission-grid">
           {/* Left: Image */}
@@ -84,6 +107,7 @@ function MissionSection() {
             ref={imageColRef}
           >
             <div className="mission-img-wrap">
+              <div className="img-decoration"></div>
               <img src="./img/mission.png" alt="Mission Godlove" />
               <div className="mission-overlay-text">
                 <h3>IMPACT</h3>
@@ -126,6 +150,24 @@ function MissionSection() {
           padding: 8rem 0;
           background-color: var(--color-black-light);
           position: relative;
+          overflow: hidden;
+        }
+
+        .connecting-line-container {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .connecting-line {
+            width: 100%;
+            background: linear-gradient(to bottom, var(--color-gold-500), transparent);
+            height: 0; 
         }
 
         .mission-grid {
@@ -133,12 +175,24 @@ function MissionSection() {
           grid-template-columns: 0.8fr 1.2fr;
           gap: 6rem;
           align-items: center;
+          position: relative;
+          z-index: 1;
         }
 
         .mission-img-wrap {
           position: relative;
           border-radius: 4px;
-          overflow: hidden;
+        }
+
+        .img-decoration {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--color-gold-500);
+            z-index: 0;
+            opacity: 0.3;
         }
 
         .mission-img-wrap img {
@@ -146,6 +200,8 @@ function MissionSection() {
           display: block;
           filter: grayscale(100%);
           transition: filter 0.5s ease;
+          position: relative;
+          z-index: 1;
         }
 
         .mission-img-wrap:hover img {
@@ -162,6 +218,7 @@ function MissionSection() {
           font-family: var(--font-serif);
           font-weight: 700;
           letter-spacing: 0.2em;
+          z-index: 2;
         }
 
         .mission-points {
@@ -207,6 +264,10 @@ function MissionSection() {
           .mission-points {
             grid-template-columns: 1fr;
             gap: 2rem;
+          }
+          
+          .connecting-line-container {
+              left: 20px;
           }
         }
       `}</style>

@@ -30,24 +30,33 @@ export default function Gallery() {
         }
       );
 
-      // When showAll changes, we might want to re-animate new items, but for now let's just animate the initial set.
-      // If showAll becomes true, the list re-renders. We can use a separate useEffect for that or just let them appear.
-      // For smoother UX, let's just animate any item that mounts.
-      // Actually, since we render the list, we can just target .gallery-item-luxury
-
-      gsap.fromTo(itemsRef.current,
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: galleryRef.current,
-            start: "top 70%"
+      // "Scattered to Order" Animation
+      // Initial state: random rotation, slight scale down, opacity 0
+      if (itemsRef.current.length > 0) {
+        gsap.fromTo(itemsRef.current,
+          {
+            opacity: 0,
+            scale: 0.5,
+            rotation: () => Math.random() * 30 - 15, // Random -15 to 15 deg
+            x: () => Math.random() * 100 - 50,
+            y: () => Math.random() * 100 - 50
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            x: 0,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.05,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+              trigger: galleryRef.current,
+              start: "top 70%"
+            }
           }
-        }
-      );
+        );
+      }
 
     }, galleryRef);
 
@@ -62,8 +71,8 @@ export default function Gallery() {
         { opacity: 1, duration: 0.3 }
       );
       gsap.fromTo(modalRef.current.querySelector('img'),
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.4, delay: 0.1, ease: "back.out(1.7)" }
+        { scale: 0.8, opacity: 0, rotation: -10 },
+        { scale: 1, opacity: 1, rotation: 0, duration: 0.5, delay: 0.1, ease: "elastic.out(1, 0.75)" }
       );
     }
   }, [selectedImage]);

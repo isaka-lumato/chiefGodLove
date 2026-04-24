@@ -27,6 +27,13 @@
   ],
   "portfolio": [
     {
+      "id": "0",
+      "src": "./img/1.png",
+      "title": "LUMATOTECH TECHNOLOGY AND AI",
+      "description": "He partners with us on all tech related issues including a 100M project that is on the works to completely change how people interact with tech in East Africa.",
+      "link": "https://lumatotech.com"
+    },
+    {
       "id": "1",
       "src": "./img/chief3.png",
       "title": "CHIEF GODLOVE COMPANY LIMITED",
